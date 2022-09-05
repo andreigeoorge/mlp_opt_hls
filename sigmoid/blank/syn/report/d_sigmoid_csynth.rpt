@@ -1,0 +1,158 @@
+
+
+================================================================
+== Vivado HLS Report for 'd_sigmoid'
+================================================================
+* Date:           Mon Sep  5 12:50:46 2022
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        sigmoid
+* Solution:       blank
+* Product family: zynq
+* Target device:  xc7z020-clg400-3
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.253 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       97|       97| 0.970 us | 0.970 us |   97|   97|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- for_sigmoid  |       96|       96|        12|          -|          -|     8|    no    |
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|     24|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|     14|     745|   1724|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|     68|    -|
+|Register         |        -|      -|     213|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        0|     14|     958|   1816|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        0|      6|   ~0   |      3|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |         Instance        |        Module        | BRAM_18K| DSP48E|  FF |  LUT | URAM|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |d_sigmoid_dmul_64cud_U2  |d_sigmoid_dmul_64cud  |        0|     11|  299|   578|    0|
+    |d_sigmoid_dsub_64bkb_U1  |d_sigmoid_dsub_64bkb  |        0|      3|  446|  1146|    0|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |Total                    |                      |        0|     14|  745|  1724|    0|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |i_fu_84_p2          |     +    |      0|  0|  13|           4|           1|
+    |icmp_ln11_fu_78_p2  |   icmp   |      0|  0|  11|           4|           5|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |Total               |          |      0|  0|  24|           8|           6|
+    +--------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------+----+-----------+-----+-----------+
+    |    Name    | LUT| Input Size| Bits| Total Bits|
+    +------------+----+-----------+-----+-----------+
+    |ap_NS_fsm   |  59|         14|    1|         14|
+    |i_0_reg_56  |   9|          2|    4|          8|
+    +------------+----+-----------+-----+-----------+
+    |Total       |  68|         16|    5|         22|
+    +------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------+----+----+-----+-----------+
+    |            Name           | FF | LUT| Bits| Const Bits|
+    +---------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                  |  13|   0|   13|          0|
+    |i_0_reg_56                 |   4|   0|    4|          0|
+    |i_reg_103                  |   4|   0|    4|          0|
+    |layer_output_load_reg_113  |  64|   0|   64|          0|
+    |tmp_1_reg_124              |  64|   0|   64|          0|
+    |tmp_reg_119                |  64|   0|   64|          0|
+    +---------------------------+----+----+-----+-----------+
+    |Total                      | 213|   0|  213|          0|
+    +---------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++---------------------------+-----+-----+------------+------------------+--------------+
+|ap_clk                     |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_rst                     |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_start                   |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_done                    | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_idle                    | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_ready                   | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|layer_input_address0       | out |    3|  ap_memory |    layer_input   |     array    |
+|layer_input_ce0            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_we0            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_d0             | out |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_q0             |  in |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_address1       | out |    3|  ap_memory |    layer_input   |     array    |
+|layer_input_ce1            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_we1            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_d1             | out |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_q1             |  in |   64|  ap_memory |    layer_input   |     array    |
+|layer_output_address0      | out |    3|  ap_memory |   layer_output   |     array    |
+|layer_output_ce0           | out |    1|  ap_memory |   layer_output   |     array    |
+|layer_output_q0            |  in |   64|  ap_memory |   layer_output   |     array    |
+|layer_derivative_address0  | out |    3|  ap_memory | layer_derivative |     array    |
+|layer_derivative_ce0       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_we0       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_d0        | out |   64|  ap_memory | layer_derivative |     array    |
++---------------------------+-----+-----+------------+------------------+--------------+
+

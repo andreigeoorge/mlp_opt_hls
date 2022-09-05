@@ -1,0 +1,3 @@
+d_sigmoid_dsub_64bkb
+d_sigmoid_dmul_64cud
+d_sigmoid

@@ -1,0 +1,85 @@
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'unclebob' on host 'skynet' (Linux_x86_64 version 5.15.0-47-generic) on Mon Sep 05 12:50:59 EEST 2022
+INFO: [HLS 200-10] On os Ubuntu 22.04.1 LTS
+INFO: [HLS 200-10] In directory '/home/unclebob/git/mlp_opt_hls'
+Sourcing Tcl script '/home/unclebob/git/mlp_opt_hls/sigmoid/pipeline/csynth.tcl'
+INFO: [HLS 200-10] Opening project '/home/unclebob/git/mlp_opt_hls/sigmoid'.
+INFO: [HLS 200-10] Adding design file 'sigmoid/blank/sigmoid.c' to the project
+INFO: [HLS 200-10] Opening solution '/home/unclebob/git/mlp_opt_hls/sigmoid/pipeline'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg400-3'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'sigmoid/blank/sigmoid.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4810 ; free virtual = 23565
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4810 ; free virtual = 23565
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4807 ; free virtual = 23568
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4807 ; free virtual = 23568
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'd_sigmoid' (sigmoid/blank/sigmoid.c:5).
+INFO: [HLS 200-489] Unrolling loop 'for_sigmoid' (sigmoid/blank/sigmoid.c:12) in function 'd_sigmoid' completely with a factor of 8.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4794 ; free virtual = 23555
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4794 ; free virtual = 23555
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'd_sigmoid' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'd_sigmoid' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'd_sigmoid'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('layer_output_load_2', sigmoid/blank/sigmoid.c:12) on array 'layer_output' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'layer_output'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 4, Depth = 15.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 8.52 seconds; current allocated memory: 113.742 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 114.148 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'd_sigmoid' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'd_sigmoid/layer_input' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'd_sigmoid/layer_output' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'd_sigmoid/layer_derivative' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'd_sigmoid' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'd_sigmoid_dsub_64ns_64ns_64_5_full_dsp_1' to 'd_sigmoid_dsub_64bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'd_sigmoid_dmul_64ns_64ns_64_5_max_dsp_1' to 'd_sigmoid_dmul_64cud' due to the length limit 20
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_address0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_address0' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_ce0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_ce0' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_we0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_we0' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_d0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_d0' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_q0' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_address1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_address1' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_ce1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_ce1' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_we1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_we1' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_d1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+WARNING: [RTGEN 206-101] Setting dangling out port 'd_sigmoid/layer_input_d1' to 0.
+WARNING: [RTGEN 206-101] Port 'd_sigmoid/layer_input_q1' has no fanin or fanout and is left dangling.
+               Please use C simulation to confirm this function argument can be read from or written to.
+INFO: [RTGEN 206-100] Generating core module 'd_sigmoid_dmul_64cud': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'd_sigmoid_dsub_64bkb': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'd_sigmoid'.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 114.868 MB.
+INFO: [HLS 200-789] **** Estimated Fmax: 121.17 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 930.504 ; gain = 521.035 ; free physical = 4779 ; free virtual = 23551
+INFO: [VHDL 208-304] Generating VHDL RTL for d_sigmoid.
+INFO: [VLOG 209-307] Generating Verilog RTL for d_sigmoid.
+INFO: [HLS 200-112] Total elapsed time: 9.36 seconds; peak allocated memory: 114.868 MB.

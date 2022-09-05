@@ -1,0 +1,240 @@
+
+
+================================================================
+== Vivado HLS Report for 'd_sigmoid'
+================================================================
+* Date:           Mon Sep  5 12:50:46 2022
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        sigmoid
+* Solution:       blank
+* Product family: zynq
+* Target device:  xc7z020-clg400-3
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.253 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       97|       97| 0.970 us | 0.970 us |   97|   97|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- for_sigmoid  |       96|       96|        12|          -|          -|     8|    no    |
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 13
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.17>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([8 x double]* %layer_input) nounwind, !map !7"   --->   Operation 14 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([8 x double]* %layer_output) nounwind, !map !13"   --->   Operation 15 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([8 x double]* %layer_derivative) nounwind, !map !17"   --->   Operation 16 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @d_sigmoid_str) nounwind"   --->   Operation 17 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (1.17ns)   --->   "br label %1" [sigmoid/blank/sigmoid.c:11]   --->   Operation 18 'br' <Predicate = true> <Delay = 1.17>
+
+State 2 <SV = 1> <Delay = 2.97>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%i_0 = phi i4 [ 0, %0 ], [ %i, %2 ]"   --->   Operation 19 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (1.08ns)   --->   "%icmp_ln11 = icmp eq i4 %i_0, -8" [sigmoid/blank/sigmoid.c:11]   --->   Operation 20 'icmp' 'icmp_ln11' <Predicate = true> <Delay = 1.08> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.08> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8) nounwind"   --->   Operation 21 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (1.40ns)   --->   "%i = add i4 %i_0, 1" [sigmoid/blank/sigmoid.c:12]   --->   Operation 22 'add' 'i' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.40> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "br i1 %icmp_ln11, label %3, label %2" [sigmoid/blank/sigmoid.c:11]   --->   Operation 23 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln12 = zext i4 %i to i64" [sigmoid/blank/sigmoid.c:12]   --->   Operation 24 'zext' 'zext_ln12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%layer_output_addr = getelementptr [8 x double]* %layer_output, i64 0, i64 %zext_ln12" [sigmoid/blank/sigmoid.c:12]   --->   Operation 25 'getelementptr' 'layer_output_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 26 [2/2] (1.56ns)   --->   "%layer_output_load = load double* %layer_output_addr, align 8" [sigmoid/blank/sigmoid.c:12]   --->   Operation 26 'load' 'layer_output_load' <Predicate = (!icmp_ln11)> <Delay = 1.56> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "ret void" [sigmoid/blank/sigmoid.c:13]   --->   Operation 27 'ret' <Predicate = (icmp_ln11)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 8.25>
+ST_3 : Operation 28 [1/2] (1.56ns)   --->   "%layer_output_load = load double* %layer_output_addr, align 8" [sigmoid/blank/sigmoid.c:12]   --->   Operation 28 'load' 'layer_output_load' <Predicate = true> <Delay = 1.56> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_3 : Operation 29 [5/5] (6.68ns)   --->   "%tmp = fsub double 1.000000e+00, %layer_output_load" [sigmoid/blank/sigmoid.c:12]   --->   Operation 29 'dsub' 'tmp' <Predicate = true> <Delay = 6.68> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 6.68> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 6.68>
+ST_4 : Operation 30 [4/5] (6.68ns)   --->   "%tmp = fsub double 1.000000e+00, %layer_output_load" [sigmoid/blank/sigmoid.c:12]   --->   Operation 30 'dsub' 'tmp' <Predicate = true> <Delay = 6.68> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 6.68> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 6.68>
+ST_5 : Operation 31 [3/5] (6.68ns)   --->   "%tmp = fsub double 1.000000e+00, %layer_output_load" [sigmoid/blank/sigmoid.c:12]   --->   Operation 31 'dsub' 'tmp' <Predicate = true> <Delay = 6.68> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 6.68> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 6.68>
+ST_6 : Operation 32 [2/5] (6.68ns)   --->   "%tmp = fsub double 1.000000e+00, %layer_output_load" [sigmoid/blank/sigmoid.c:12]   --->   Operation 32 'dsub' 'tmp' <Predicate = true> <Delay = 6.68> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 6.68> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 6.68>
+ST_7 : Operation 33 [1/5] (6.68ns)   --->   "%tmp = fsub double 1.000000e+00, %layer_output_load" [sigmoid/blank/sigmoid.c:12]   --->   Operation 33 'dsub' 'tmp' <Predicate = true> <Delay = 6.68> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 6.68> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 7.35>
+ST_8 : Operation 34 [5/5] (7.35ns)   --->   "%tmp_1 = fmul double %layer_output_load, %tmp" [sigmoid/blank/sigmoid.c:12]   --->   Operation 34 'dmul' 'tmp_1' <Predicate = true> <Delay = 7.35> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 4> <II = 1> <Delay = 7.35> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 7.35>
+ST_9 : Operation 35 [4/5] (7.35ns)   --->   "%tmp_1 = fmul double %layer_output_load, %tmp" [sigmoid/blank/sigmoid.c:12]   --->   Operation 35 'dmul' 'tmp_1' <Predicate = true> <Delay = 7.35> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 4> <II = 1> <Delay = 7.35> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 7.35>
+ST_10 : Operation 36 [3/5] (7.35ns)   --->   "%tmp_1 = fmul double %layer_output_load, %tmp" [sigmoid/blank/sigmoid.c:12]   --->   Operation 36 'dmul' 'tmp_1' <Predicate = true> <Delay = 7.35> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 4> <II = 1> <Delay = 7.35> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 7.35>
+ST_11 : Operation 37 [2/5] (7.35ns)   --->   "%tmp_1 = fmul double %layer_output_load, %tmp" [sigmoid/blank/sigmoid.c:12]   --->   Operation 37 'dmul' 'tmp_1' <Predicate = true> <Delay = 7.35> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 4> <II = 1> <Delay = 7.35> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 7.35>
+ST_12 : Operation 38 [1/5] (7.35ns)   --->   "%tmp_1 = fmul double %layer_output_load, %tmp" [sigmoid/blank/sigmoid.c:12]   --->   Operation 38 'dmul' 'tmp_1' <Predicate = true> <Delay = 7.35> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 4> <II = 1> <Delay = 7.35> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 1.56>
+ST_13 : Operation 39 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @p_str) nounwind" [sigmoid/blank/sigmoid.c:12]   --->   Operation 39 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 40 [1/1] (0.00ns)   --->   "%zext_ln12_1 = zext i4 %i_0 to i64" [sigmoid/blank/sigmoid.c:12]   --->   Operation 40 'zext' 'zext_ln12_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 41 [1/1] (0.00ns)   --->   "%layer_derivative_add = getelementptr [8 x double]* %layer_derivative, i64 0, i64 %zext_ln12_1" [sigmoid/blank/sigmoid.c:12]   --->   Operation 41 'getelementptr' 'layer_derivative_add' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 42 [1/1] (1.56ns)   --->   "store double %tmp_1, double* %layer_derivative_add, align 8" [sigmoid/blank/sigmoid.c:12]   --->   Operation 42 'store' <Predicate = true> <Delay = 1.56> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_13 : Operation 43 [1/1] (0.00ns)   --->   "br label %1" [sigmoid/blank/sigmoid.c:11]   --->   Operation 43 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.18ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', sigmoid/blank/sigmoid.c:12) [10]  (1.18 ns)
+
+ <State 2>: 2.97ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', sigmoid/blank/sigmoid.c:12) [10]  (0 ns)
+	'add' operation ('i', sigmoid/blank/sigmoid.c:12) [13]  (1.41 ns)
+	'getelementptr' operation ('layer_output_addr', sigmoid/blank/sigmoid.c:12) [18]  (0 ns)
+	'load' operation ('layer_output_load', sigmoid/blank/sigmoid.c:12) on array 'layer_output' [19]  (1.57 ns)
+
+ <State 3>: 8.25ns
+The critical path consists of the following:
+	'load' operation ('layer_output_load', sigmoid/blank/sigmoid.c:12) on array 'layer_output' [19]  (1.57 ns)
+	'dsub' operation ('tmp', sigmoid/blank/sigmoid.c:12) [20]  (6.69 ns)
+
+ <State 4>: 6.69ns
+The critical path consists of the following:
+	'dsub' operation ('tmp', sigmoid/blank/sigmoid.c:12) [20]  (6.69 ns)
+
+ <State 5>: 6.69ns
+The critical path consists of the following:
+	'dsub' operation ('tmp', sigmoid/blank/sigmoid.c:12) [20]  (6.69 ns)
+
+ <State 6>: 6.69ns
+The critical path consists of the following:
+	'dsub' operation ('tmp', sigmoid/blank/sigmoid.c:12) [20]  (6.69 ns)
+
+ <State 7>: 6.69ns
+The critical path consists of the following:
+	'dsub' operation ('tmp', sigmoid/blank/sigmoid.c:12) [20]  (6.69 ns)
+
+ <State 8>: 7.36ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_1', sigmoid/blank/sigmoid.c:12) [21]  (7.36 ns)
+
+ <State 9>: 7.36ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_1', sigmoid/blank/sigmoid.c:12) [21]  (7.36 ns)
+
+ <State 10>: 7.36ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_1', sigmoid/blank/sigmoid.c:12) [21]  (7.36 ns)
+
+ <State 11>: 7.36ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_1', sigmoid/blank/sigmoid.c:12) [21]  (7.36 ns)
+
+ <State 12>: 7.36ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_1', sigmoid/blank/sigmoid.c:12) [21]  (7.36 ns)
+
+ <State 13>: 1.57ns
+The critical path consists of the following:
+	'getelementptr' operation ('layer_derivative_add', sigmoid/blank/sigmoid.c:12) [23]  (0 ns)
+	'store' operation ('store_ln12', sigmoid/blank/sigmoid.c:12) of variable 'tmp_1', sigmoid/blank/sigmoid.c:12 on array 'layer_derivative' [24]  (1.57 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

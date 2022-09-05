@@ -1,0 +1,196 @@
+
+
+================================================================
+== Vivado HLS Report for 'd_sigmoid'
+================================================================
+* Date:           Mon Sep  5 12:51:07 2022
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        sigmoid
+* Solution:       pipeline
+* Product family: zynq
+* Target device:  xc7z020-clg400-3
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.253 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |       14|       14| 0.140 us | 0.140 us |    4|    4| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|      4|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|     28|    1490|   3448|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|    261|    -|
+|Register         |       16|      -|    1168|      8|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |       16|     28|    2658|   3721|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        5|     12|       2|      6|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |         Instance        |        Module        | BRAM_18K| DSP48E|  FF |  LUT | URAM|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |d_sigmoid_dmul_64cud_U3  |d_sigmoid_dmul_64cud  |        0|     11|  299|   578|    0|
+    |d_sigmoid_dmul_64cud_U4  |d_sigmoid_dmul_64cud  |        0|     11|  299|   578|    0|
+    |d_sigmoid_dsub_64bkb_U1  |d_sigmoid_dsub_64bkb  |        0|      3|  446|  1146|    0|
+    |d_sigmoid_dsub_64bkb_U2  |d_sigmoid_dsub_64bkb  |        0|      3|  446|  1146|    0|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+    |Total                    |                      |        0|     28| 1490|  3448|    0|
+    +-------------------------+----------------------+---------+-------+-----+------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+-------+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+-------+---+----+------------+------------+
+    |ap_block_pp0_stage0_11001  |    and   |      0|  0|   2|           1|           1|
+    |ap_enable_pp0              |    xor   |      0|  0|   2|           1|           2|
+    +---------------------------+----------+-------+---+----+------------+------------+
+    |Total                      |          |      0|  0|   4|           2|           3|
+    +---------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  27|          5|    1|          5|
+    |ap_enable_reg_pp0_iter0    |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter3    |   9|          2|    1|          2|
+    |grp_fu_216_p0              |  27|          5|   64|        320|
+    |grp_fu_216_p1              |  27|          5|   64|        320|
+    |grp_fu_220_p0              |  27|          5|   64|        320|
+    |grp_fu_220_p1              |  27|          5|   64|        320|
+    |layer_derivative_address0  |  27|          5|    3|         15|
+    |layer_derivative_address1  |  27|          5|    3|         15|
+    |layer_output_address0      |  27|          5|    3|         15|
+    |layer_output_address1      |  27|          5|    3|         15|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 261|         49|  271|       1349|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------+----+----+-----+-----------+
+    |             Name            | FF | LUT| Bits| Const Bits|
+    +-----------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                    |   4|   0|    4|          0|
+    |ap_enable_reg_pp0_iter0_reg  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3      |   1|   0|    1|          0|
+    |layer_output_load_1_reg_250  |  64|   0|   64|          0|
+    |layer_output_load_2_reg_266  |  64|   0|   64|          0|
+    |layer_output_load_3_reg_272  |  64|   0|   64|          0|
+    |layer_output_load_4_reg_288  |  64|   0|   64|          0|
+    |layer_output_load_5_reg_294  |  64|   0|   64|          0|
+    |layer_output_load_6_reg_310  |  64|   0|   64|          0|
+    |layer_output_load_7_reg_316  |  64|   0|   64|          0|
+    |layer_output_load_reg_244    |  64|   0|   64|          0|
+    |reg_224                      |  64|   0|   64|          0|
+    |reg_229                      |  64|   0|   64|          0|
+    |tmp_2_reg_332                |  64|   0|   64|          0|
+    |tmp_3_reg_337                |  64|   0|   64|          0|
+    |tmp_4_reg_342                |  64|   0|   64|          0|
+    |tmp_5_reg_347                |  64|   0|   64|          0|
+    |tmp_6_reg_352                |  64|   0|   64|          0|
+    |tmp_7_reg_357                |  64|   0|   64|          0|
+    |tmp_reg_322                  |  64|   0|   64|          0|
+    |tmp_s_reg_327                |  64|   0|   64|          0|
+    |layer_output_load_1_reg_250  |   1|   1|   64|          0|
+    |layer_output_load_2_reg_266  |   1|   1|   64|          0|
+    |layer_output_load_3_reg_272  |   1|   1|   64|          0|
+    |layer_output_load_4_reg_288  |   1|   1|   64|          0|
+    |layer_output_load_5_reg_294  |   1|   1|   64|          0|
+    |layer_output_load_6_reg_310  |   1|   1|   64|          0|
+    |layer_output_load_7_reg_316  |   1|   1|   64|          0|
+    |layer_output_load_reg_244    |   1|   1|   64|          0|
+    +-----------------------------+----+----+-----+-----------+
+    |Total                        |1168|   8| 1672|          0|
+    +-----------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++---------------------------+-----+-----+------------+------------------+--------------+
+|ap_clk                     |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_rst                     |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_start                   |  in |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_done                    | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_idle                    | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|ap_ready                   | out |    1| ap_ctrl_hs |     d_sigmoid    | return value |
+|layer_input_address0       | out |    3|  ap_memory |    layer_input   |     array    |
+|layer_input_ce0            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_we0            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_d0             | out |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_q0             |  in |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_address1       | out |    3|  ap_memory |    layer_input   |     array    |
+|layer_input_ce1            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_we1            | out |    1|  ap_memory |    layer_input   |     array    |
+|layer_input_d1             | out |   64|  ap_memory |    layer_input   |     array    |
+|layer_input_q1             |  in |   64|  ap_memory |    layer_input   |     array    |
+|layer_output_address0      | out |    3|  ap_memory |   layer_output   |     array    |
+|layer_output_ce0           | out |    1|  ap_memory |   layer_output   |     array    |
+|layer_output_q0            |  in |   64|  ap_memory |   layer_output   |     array    |
+|layer_output_address1      | out |    3|  ap_memory |   layer_output   |     array    |
+|layer_output_ce1           | out |    1|  ap_memory |   layer_output   |     array    |
+|layer_output_q1            |  in |   64|  ap_memory |   layer_output   |     array    |
+|layer_derivative_address0  | out |    3|  ap_memory | layer_derivative |     array    |
+|layer_derivative_ce0       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_we0       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_d0        | out |   64|  ap_memory | layer_derivative |     array    |
+|layer_derivative_address1  | out |    3|  ap_memory | layer_derivative |     array    |
+|layer_derivative_ce1       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_we1       | out |    1|  ap_memory | layer_derivative |     array    |
+|layer_derivative_d1        | out |   64|  ap_memory | layer_derivative |     array    |
++---------------------------+-----+-----+------------+------------------+--------------+
+
